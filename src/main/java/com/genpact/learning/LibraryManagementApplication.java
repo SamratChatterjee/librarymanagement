@@ -52,7 +52,7 @@ public class LibraryManagementApplication implements CommandLineRunner {
         Iterable<Book> persistedBooks = bookRepository.saveAll(bookList);
 
         Library juniorLibrary = new Library("Junior Library","Mr. Ross Geller");
-        Library seniorLibrary = new Library("Senior Library", "Mrs Rachel Green");
+        Library seniorLibrary = new Library("Senior Library", "Mrs. Rachel Green");
         List<Library> libraryList = Arrays.asList(juniorLibrary,seniorLibrary);
         logger.debug(Constants.PERSIST_MESSAGE + "LibraryRepository");
         Iterable<Library> persistedLibrary = libraryRepository.saveAll(libraryList);

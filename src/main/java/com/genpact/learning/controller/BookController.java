@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/learning")
+@CrossOrigin(origins = "*")
 public class BookController {
 
     private static final Logger logger = LogManager.getLogger(LibraryController.class);
@@ -29,9 +30,9 @@ public class BookController {
     }
 
     @GetMapping(value = "/book/{id}")
-    public Book getBookById(@PathVariable int id){
+    public List<Book> getBookById(@PathVariable int id){
         logger.debug(Constants.ENTER_MESSAGE + "BookController.getBookById()");
-        Book response = bookService.getBookById(id);
+        List<Book> response = bookService.getBookById(id);
         logger.debug(Constants.EXIT_MESSAGE + "BookController.getBookById()");
         return response;
     }

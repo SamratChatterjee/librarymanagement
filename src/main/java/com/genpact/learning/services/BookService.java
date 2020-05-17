@@ -40,11 +40,11 @@ public class BookService {
         }
     }
 
-    public Book getBookById(int id){
+    public List<Book> getBookById(int id){
         logger.debug(Constants.ENTER_MESSAGE + "BookService.getBookById()");
         try {
             logger.debug(Constants.FETCH_MESSAGE + "BookRepository");
-            Book book = bookRepository.findBookById(id);
+            List<Book> book = bookRepository.findBookById(id);
             if(book != null){
                 return book;
             }

@@ -53,8 +53,8 @@ class BookServiceTest {
         @DisplayName("findBookById-Positive-Test")
         void getBookByIdPositive() {
             Mockito.when(bookRepository.findBookById(1))
-                    .thenReturn(book);
-            assertEquals(book, bookService.getBookById(1));
+                    .thenReturn(bookList);
+            assertEquals(bookList, bookService.getBookById(1));
         }
 
         @Test
