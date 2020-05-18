@@ -40,25 +40,43 @@ public class BookService {
         }
     }
 
-    public List<Book> getBookById(int id){
-        logger.debug(Constants.ENTER_MESSAGE + "BookService.getBookById()");
+    public List<Book> getBookByLibraryId(int id){
+        logger.debug(Constants.ENTER_MESSAGE + "BookService.getBookByLibraryId()");
         try {
             logger.debug(Constants.FETCH_MESSAGE + "BookRepository");
-            List<Book> book = bookRepository.findBookById(id);
-            if(book != null){
-                return book;
+            List<Book> books = bookRepository.findBookByLibraryId(id);
+            if(books != null){
+                return books;
             }
             else{
-                logger.debug(Constants.EXIT_MESSAGE + "BookService.getBookById()");
+                logger.debug(Constants.EXIT_MESSAGE + "BookService.getBookByLibraryId()");
                 return null;
             }
         }
         catch(Exception e){
             logger.error(e.getMessage());
+            logger.debug(Constants.EXIT_MESSAGE + "BookService.getBookByLibraryId()");
+            return null;
+        }
+    }
+    public Book getBookById(int id) {
+        logger.debug(Constants.ENTER_MESSAGE + "BookService.getBookById()");
+        try {
+            logger.debug(Constants.FETCH_MESSAGE + "BookRepository");
+            Book book = bookRepository.findBookById(id);
+            if (book != null) {
+                return book;
+            } else {
+                logger.debug(Constants.EXIT_MESSAGE + "BookService.getBookById()");
+                return null;
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage());
             logger.debug(Constants.EXIT_MESSAGE + "BookService.getBookById()");
             return null;
         }
     }
+
 
     @Transactional
     public boolean addBook(Book book){

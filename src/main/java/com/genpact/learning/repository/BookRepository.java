@@ -12,7 +12,10 @@ import java.util.List;
 @Repository
 public interface BookRepository extends CrudRepository<Book, Long>  {
     @Query(value = "select b from Book b where b.libraryId = ?1")
-    List<Book> findBookById(@Param("id") int id);
+    List<Book> findBookByLibraryId(@Param("id") int id);
+
+    @Query(value = "select b from Book b where b.bookId = ?1")
+    Book findBookById(@Param("id") int id);
 
     @Modifying
     @Query(value = "delete from Book where bookId = ?1")

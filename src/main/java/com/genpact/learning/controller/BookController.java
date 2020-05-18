@@ -29,10 +29,18 @@ public class BookController {
         return response;
     }
 
-    @GetMapping(value = "/book/{id}")
-    public List<Book> getBookById(@PathVariable int id){
+    @GetMapping(value = "/book/library/{id}")
+    public List<Book> getBookByLibraryId(@PathVariable int id){
         logger.debug(Constants.ENTER_MESSAGE + "BookController.getBookById()");
-        List<Book> response = bookService.getBookById(id);
+        List<Book> response = bookService.getBookByLibraryId(id);
+        logger.debug(Constants.EXIT_MESSAGE + "BookController.getBookById()");
+        return response;
+    }
+
+    @GetMapping(value = "/book/{id}")
+    public Book getBookById(@PathVariable int id){
+        logger.debug(Constants.ENTER_MESSAGE + "BookController.getBookById()");
+        Book response = bookService.getBookById(id);
         logger.debug(Constants.EXIT_MESSAGE + "BookController.getBookById()");
         return response;
     }
