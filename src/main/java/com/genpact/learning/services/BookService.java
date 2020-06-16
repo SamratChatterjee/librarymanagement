@@ -1,7 +1,9 @@
 package com.genpact.learning.services;
 
 import com.genpact.learning.model.Book;
+import com.genpact.learning.model.Borrower;
 import com.genpact.learning.repository.BookRepository;
+import com.genpact.learning.repository.BorrowerRepository;
 import com.genpact.learning.utils.Constants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,6 +21,19 @@ public class BookService {
 
     @Autowired
     BookRepository bookRepository;
+
+    @Autowired
+    BorrowerRepository borrowerRepository;
+
+    @Transactional
+    public void updateBorrower(Borrower borrower){
+        int bookId = borrower.getBookId();
+        Book book = bookRepository.findBookById(bookId);
+        book.setQuantity(book.getQuantity()-1);
+        updateBook(book);
+        borrowerRepository.save(borrower);
+
+    }
 
     public List<Book> getAllBooks(){
         logger.debug(Constants.ENTER_MESSAGE + "BookService.getAllBooks()");
